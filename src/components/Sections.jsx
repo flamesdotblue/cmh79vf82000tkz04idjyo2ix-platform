@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, useAnimation, useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { Rocket, Code, Cog, Gauge, Star, Quote, CheckCircle } from 'lucide-react';
 
 const GradientTitle = ({ children }) => (
@@ -27,10 +27,7 @@ const FeaturedWork = () => {
     const rotateY = ((x - centerX) / centerX) * 6;
     card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`;
   };
-
-  const resetTilt = (e) => {
-    e.currentTarget.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(0)';
-  };
+  const resetTilt = (e) => { e.currentTarget.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(0)'; };
 
   return (
     <section id="work" className="py-20 bg-white">
@@ -52,10 +49,10 @@ const FeaturedWork = () => {
               className={`group relative h-56 rounded-2xl overflow-hidden bg-gradient-to-br ${p.color} text-white shadow-xl`}
               style={{ transformStyle: 'preserve-3d' }}
             >
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.2),transparent_40%),radial-gradient(circle_at_70%_70%,rgba(255,255,255,0.2),transparent_40%)]" />
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.25),transparent_40%),radial-gradient(circle_at_70%_70%,rgba(255,255,255,0.2),transparent_40%)]" />
               <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/40" />
               <div className="relative z-10 p-5 h-full flex flex-col justify-between">
-                <span className="text-xs font-medium uppercase tracking-wider text-white/80">{p.tag}</span>
+                <span className="text-xs font-medium uppercase tracking-wider text-white/85">{p.tag}</span>
                 <h3 className="text-lg font-semibold leading-tight">{p.title}</h3>
               </div>
             </motion.div>
@@ -83,9 +80,7 @@ const Services = () => {
     const ry = ((x - rect.width / 2) / rect.width) * 12;
     el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
   };
-  const onLeave = (e) => {
-    e.currentTarget.style.transform = 'rotateX(0deg) rotateY(0deg)';
-  };
+  const onLeave = (e) => { e.currentTarget.style.transform = 'rotateX(0deg) rotateY(0deg)'; };
 
   return (
     <section id="services" className="py-20 bg-[#F8F8F6]">
@@ -179,8 +174,9 @@ const Counter = ({ to, duration = 1500 }) => {
 };
 
 const Impact = () => (
-  <section className="py-20 bg-[#0f1220] text-white">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6">
+  <section className="py-20 bg-[#0f1220] text-white overflow-hidden relative">
+    <div className="absolute -inset-x-20 -top-20 h-96 pointer-events-none bg-[radial-gradient(600px_200px_at_50%_-20%,rgba(111,111,207,0.25),transparent)]" />
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
       <div className="flex items-end justify-between gap-4 mb-10">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">Impact Metrics</h2>
         <Star className="h-6 w-6 text-[#6F6FCF]" />
@@ -272,7 +268,7 @@ const Pricing = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="relative rounded-2xl bg-white p-6 border border-black/5 shadow-[0_20px_50px_-20px_rgba(6,24,44,0.15)]"
+              className="relative rounded-2xl bg-white p-6 border border-black/5 shadow-[0_20px_50px_-20px_rgba(6,24,44,0.15)] hover:shadow-[0_30px_70px_-20px_rgba(6,24,44,0.25)] transition-shadow"
             >
               <div className="absolute inset-0 rounded-2xl pointer-events-none ring-1 ring-transparent [mask-image:linear-gradient(white,transparent)]" style={{ boxShadow: '0 0 0 1px rgba(6,24,44,0.05) inset' }} />
               <h3 className="font-semibold text-lg">{p.name}</h3>
@@ -298,7 +294,7 @@ const AISection = () => (
     <div className="absolute -inset-x-20 -top-20 h-96 pointer-events-none bg-[radial-gradient(600px_200px_at_50%_-20%,rgba(111,111,207,0.25),transparent)]" />
     <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
       <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">AI + Automations</h2>
-      <p className="mt-3 max-w-2xl text-white/70">We design intelligent systems: vector search, RAG pipelines, LLM agents, and workflow automations that drive outcomes.</p>
+      <p className="mt-3 max-w-2xl text-white/75">We design intelligent systems: vector search, RAG pipelines, LLM agents, and workflow automations that drive outcomes.</p>
       <div className="mt-10 grid md:grid-cols-2 gap-6">
         <div className="relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 p-6 backdrop-blur">
           <div className="absolute inset-0 pointer-events-none animate-pulse bg-[radial-gradient(800px_160px_at_50%_-10%,rgba(56,76,234,0.15),transparent)]" />
